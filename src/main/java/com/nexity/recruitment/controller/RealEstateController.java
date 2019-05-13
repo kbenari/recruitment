@@ -64,7 +64,7 @@ public class RealEstateController {
 		return new ResponseEntity<Object>(foundRealEstate,HttpStatus.OK);
 	}
 
-	@ApiOperation(value = "Créer une annonce immobilière grâce")
+	@ApiOperation(value = "Créer une annonce immobilière")
 	@RequestMapping( method = RequestMethod.POST)
 	@CrossOrigin
 	public ResponseEntity<Object> addRealEstate(@Validated @RequestBody RealEstate realEstate) {
