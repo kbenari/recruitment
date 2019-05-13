@@ -31,25 +31,29 @@ static {
 	
 	@Override
 	public List<RealEstate> findAll() {
-		return realEstates.values().stream().collect(Collectors.toList());
+		return realEstates.values().stream().map(t -> new RealEstate(t)).collect(Collectors.toList());
 	}
 
 	@Override
 	public RealEstate findById(int id) {
 		
-		return realEstates.get(id);
+		RealEstate foundRealEstate = realEstates.get(id);
+		if (foundRealEstate!=null)
+		return new RealEstate(foundRealEstate);
+		
+		return null;
 	}
 
 	@Override
 	public RealEstate save(RealEstate realEstate) {
-		realEstates.put(realEstate.getId(), realEstate);
-		return realEstate ;
+		realEstates.put(realEstate.getIndex(), realEstate);
+		return new RealEstate(realEstate) ;
 	}
 
 	@Override
 	public Integer increments() {
-		
-		return index+1;
+		index++;
+		return index;
 	}
 
 }
